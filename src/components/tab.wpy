@@ -1,0 +1,78 @@
+<style lang="less">
+.tab {  
+    width: 100%;
+    text-align: center;
+    height: 70rpx;    
+}
+.item{
+    font-size: 30rpx;
+    line-height: 70rpx;
+    display: inline-block;
+    padding: 0 50rpx;
+    color: #999;
+    position: relative;
+}
+.active{
+    color: #333;
+}
+.active::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin-left: -30rpx;
+    width: 60rpx;
+    height: 6rpx;
+    border-radius: 3rpx;
+    background: #ffd100;
+}
+</style>
+<template>
+    <view class="tab">
+        <view wx:for="{{tabList}}" wx:key="index" class="item {{currentTab==index ? 'active' : ''}}" data-current="{{index}}" bindtap="swichNav">
+            {{ item }}
+        </view>
+    </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class Filter extends wepy.component {
+    props = {
+        currentTab: {
+            default: 0
+        },
+        tabList: {
+            type: Object
+        }
+    }
+
+    methods = {
+        /**
+         * 点击tab切换
+         */
+        swichNav(e) {
+            let that = this;
+            if (this.data.currentTab == e.target.dataset.current) {
+                return false;
+            } else {
+                that.currentTab = e.target.dataset.current;
+                that.$apply();
+            }
+            this.$emit("currentTab", that.currentTab)
+        }
+    }
+
+    onLoad() {
+        let that = this;
+    }
+    
+    watch = {
+        currentTab(newValue, oldValue) {
+            console.log(`当前TAB value: ${oldValue} -> ${newValue}`)
+        }
+    }
+}
+
+</script>
+

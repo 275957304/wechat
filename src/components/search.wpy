@@ -1,0 +1,24 @@
+<style lang="less">
+.search{
+    height: 68rpx;
+    line-height: 68rpx;
+    background: #f5f5f5;
+    border-radius: 40rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 26rpx;
+}
+</style>
+<template>
+    <view class="search">
+        渣渣辉回归贪玩蓝月
+    </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class Filter extends wepy.component {
+    
+}
+</script>
+

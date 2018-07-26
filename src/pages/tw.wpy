@@ -1,0 +1,49 @@
+<style lang="less">
+.container{
+    padding: 0 40rpx;
+}
+.search_area{
+    width: 100%;
+    margin: 20rpx 0;
+}
+</style>
+<template>
+<view class="container">
+    <tab @currentTab.user="getCurrentTab" :currentTab.sync="currentTab" :tabList.sync="tabList"></tab>
+    <view class="search_area">
+        <search></search>
+    </view>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Tab from '@/components/tab'
+import Search from '@/components/search'
+export default class Index extends wepy.page {
+    config = {
+        navigationBarTitleText: '贪玩游戏'
+    }
+    components = {
+        tab: Tab,
+        search: Search
+    }
+
+    data = {
+        currentTab: 0,
+        tabList: ["游戏资讯", "热帖推荐"],
+    }
+
+    methods = {
+        getCurrentTab(cur, evt) {
+            let that = this;
+            that.currentTab = cur;
+            console.log(cur)
+        }
+    }
+
+    onLoad() {
+
+    }
+}
+</script>
