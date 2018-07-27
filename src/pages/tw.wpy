@@ -1,48 +1,92 @@
 <style lang="less">
-.container{
-    padding: 0 40rpx;
+.container{}
+.list{
+    border-bottom: 1rpx solid #f2f2f2;
+    padding: 30rpx  0;
 }
-.search_area{
-    width: 100%;
-    margin: 20rpx 0;
+.list-tit{
+    font-size: 36rpx;
+    color: #1a1a1a;
+}
+
+.desc-txt{
+    color: #666;
+    font-size: 30rpx;
+    line-height: 46.6rpx;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+.thumb{
+    width: 210rpx;
+    height: 140rpx;
+    margin-left: 30rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
 }
 </style>
 <template>
 <view class="container">
-    <tab @currentTab.user="getCurrentTab" :currentTab.sync="currentTab" :tabList.sync="tabList"></tab>
-    <view class="search_area">
-        <search></search>
+    <head @currentTab.user = "getCurrentTab" @search.user = "getSearch" :currentTab.sync="currentTab" ></head>
+    <view class="main">
+        
+        <view class="inif" wx:for="{{inifListData}}" wx:key="index">
+            <view class="list" @tap="toDetail({{item.src}})">
+                <view class="list-tit">{{item.title}}</view>
+                <view class="mt10 flex">
+                    <view class="desc-txt flex_item">{{item.desc}}</view>
+                    <view class="thumb" wx:if="{{ item.src }}"><image style="width:100%;height:100%;" mode="scaleToFill" src="{{item.src}}"></image></view>
+                </view>
+            </view>
+        </view>
+
     </view>
 </view>
 </template>
 
 <script>
 import wepy from 'wepy'
-import Tab from '@/components/tab'
-import Search from '@/components/search'
+import Head from '@/components/head'
+//通过继承自wepy.page的类创建页面逻辑
 export default class Index extends wepy.page {
+    //页面配置
     config = {
         navigationBarTitleText: '贪玩游戏'
     }
+    //声明页面中将要使用到的组件
     components = {
-        tab: Tab,
-        search: Search
+        head : Head
     }
-
+    //可用于页面模板绑定的数据
     data = {
         currentTab: 0,
-        tabList: ["游戏资讯", "热帖推荐"],
+        inifListData:[{title:"老太太和老头子牵着手回家过圣诞节甜蜜幸福让人羡慕不已",desc:"马上又到2018的圣诞节了，今年我们决定回我的故乡希腊见见亲戚年我们决定回我的故年我们决定回我的故。",src:"https://developers.weixin.qq.com/miniprogram/dev/image/cat/0.jpg?t=2018724"},
+        {title:"2222222手回家过圣诞节甜蜜幸福让人羡慕不已",desc:"马上又到2018的圣诞节了，今年我们决定回我的故乡希腊见见亲fdsfsdfsdfsdfsd回我的故。",src:"https://developers.weixin.qq.com/miniprogram/dev/image/cat/0.jpg?t=2018724"},{title:"2222222手回家过圣诞节甜蜜幸福让人羡慕不已",desc:"马fdsfdsfsd的故乡希腊见见亲fdsfsdfsdfsdfsd回我的故。",src:""},{title:"2222222手回家过圣诞节甜蜜幸福让人羡慕不已",desc:"马上又到2018的圣诞节了，今年我们决定回我的故乡希腊见见亲fdsfsdfsdfsdfsd回我的故。",src:"https://developers.weixin.qq.com/miniprogram/dev/image/cat/0.jpg?t=2018724"},{title:"2222222手回家过圣诞节甜蜜幸福让人羡慕不已",desc:"马fdsfdsfsd的故乡希腊见见亲fdsfsdfsdfsdfsd回我的故。",src:""}],
     }
-
+    //事件处理函数(集中保存在methods对象中)
     methods = {
         getCurrentTab(cur, evt) {
             let that = this;
             that.currentTab = cur;
             console.log(cur)
-        }
-    }
+        },
+        //搜索文本
+        getSearch(val){
+            console.log(val);
+        },
+        toDetail(id) {
+            console.log(id)
 
+            wepy.navigateTo({
+                url: `details?id=${id}&&from=news`
+            });
+        },
+    }
+    //页面的生命周期函数
     onLoad() {
+        console.log(wx.getSystemInfoSync().screenHeight);
 
     }
 }

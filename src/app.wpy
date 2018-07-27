@@ -1,11 +1,12 @@
 <style lang="less">
+@import "./style/reset.less";
 .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
 </style>
 
@@ -22,8 +23,9 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-    'pages/tw',
-    'pages/index'
+      'pages/tw',
+      'pages/details',
+      'pages/index'
     ],
     window: {
       backgroundTextStyle: 'light',
