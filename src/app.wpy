@@ -1,13 +1,5 @@
 <style lang="less">
 @import "./style/reset.less";
-.container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-}
 </style>
 
 <script>
@@ -21,19 +13,21 @@ const store = configStore()
 setStore(store)
 
 export default class extends wepy.app {
-  config = {
+config = {
     pages: [
-      'pages/tw',
-      'pages/details',
-      'pages/index'
+        
+        'pages/tw',
+        'pages/discuss/lists',
+        'pages/details',
+        'pages/index'
     ],
     window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+        backgroundTextStyle: 'light',
+        navigationBarBackgroundColor: '#fff',
+        navigationBarTitleText: 'WeChat',
+        navigationBarTextStyle: 'black'
     }
-  }
+}
 
   globalData = {
     userInfo: null

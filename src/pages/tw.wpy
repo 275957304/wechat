@@ -30,8 +30,9 @@
 <template>
 <view class="container">
     <head @currentTab.user = "getCurrentTab" @search.user = "getSearch" :currentTab.sync="currentTab" ></head>
-    <view class="main">
-        
+
+    <view class="main">        
+
         <view class="inif" wx:for="{{inifListData}}" wx:key="index">
             <view class="list" @tap="toDetail({{item.src}})">
                 <view class="list-tit">{{item.title}}</view>
@@ -41,7 +42,6 @@
                 </view>
             </view>
         </view>
-
     </view>
 </view>
 </template>

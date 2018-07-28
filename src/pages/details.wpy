@@ -1,11 +1,25 @@
 <style lang="less">
 .details{
-    background: #ccc;
+    margin-top: 20rpx;
+    line-height: 45rpx;
+}
+.details_head{
+    border-bottom: 1rpx solid #f2f2f2;
+    padding-bottom: 20rpx;
 }
 </style>
 <template>
-    <view class="details">
-        fdsfsdfsd 这里是详情页面 
+    <view class="main">
+        <view class="details_head">
+            <text class="f36">新游戏出炉 贪玩《热血连击》不删档内测预告</text>
+            <view class="mt10 light f24">
+                新闻 · 龙腾传世
+                <text class="fr">2018-07-09</text>
+            </view>
+        </view>
+        <view class="details f30">
+            昨天，是香港歌手、《龙腾传世》手游代言人陈小春的生日。从外表很难看出来，当年玩世不恭的“山鸡哥”已经步入“知天命”的人生阶段。自从“隐退江湖”以后，陈小春把更多精力放在了家庭上。陈氏夫妇“撒狗粮”早已不是什么稀罕事了，此外陈小春还会带着儿子Jasper一起上综艺节目，真的是一个顾家的好男人。
+        </view>
     </view>
 </template>
 <script>
@@ -16,7 +30,7 @@ export default class Details extends wepy.page {
     }
     //可用于页面模板绑定的数据
     data = {
-        currentTab: 0,
+        
     }
     onLoad() {
         console.log('详情页面');
