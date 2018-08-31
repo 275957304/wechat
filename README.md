@@ -34,8 +34,7 @@ VS Code
 - 生命周期是个需要慢慢琢磨的东西
 ```
 
- 
-####使用微信开发者工具新建项目，本地开发选择 dist 目录
+## 使用微信开发者工具新建项目，本地开发选择 dist 目录
 微信开发者工具 -> 项目
 o	关闭 ES6 转 ES5
 o	关闭 代码压缩上传
@@ -44,49 +43,50 @@ o	关闭 上传代码时样式文件自动补全
 
 
 ## 经踩过的坑
-###标签中的指令简写
+
+##### 标签中的指令简写
 •跟Vue类似
 •对于动态赋值的属性可以使用 :attr="value" 的方式
 •对于绑定事件可以使用@click="fn"的方式
 
-###data使用注意点
+##### data使用注意点
 •对于视图中需要用到的数据，应该事先在data中定义一下，哪怕此时没有数据，也应该定义一个空值
 
-###WePY中的methods的使用
+##### WePY中的methods的使用
 •只能声明页面的bind、catch事件，不能声明自定义方法
 •自定义方法应该跟methods平级
 
-###页面跳转
+##### 页面跳转
 •navigateTo() 和 redirectTo() 不允许跳转到 tabbar 页面，
 •只能用 switchTab() 跳转到 tabbar 页面
 
-###文件上传
+##### 文件上传
 •上传文件没有传统html中的文件域(<input type="file"/>)，要想上传文件只能使用API： uploadFile()
 
-###更新DOM$apply
+##### 更新DOM$apply
 •如果需要更新DOM，应该在随后调用组件实例的$apply方法，才能更新到页面中
 this.name="abc";
 this.$apply()
 •PS：对于性能要求较高的应用，不要频繁的调用$apply()更新DOM，可以根据实际情况更新
 
-###父组件向子组件传递数据，通过prop的方式传递
+##### 父组件向子组件传递数据，通过prop的方式传递
 •如果需要传递动态数据，需要.sync修饰符
 •如果需要子组件数据同步到父组件，需要在定义prop的时候设置twoWay:true
 
-###mixin
+##### mixin
 •wepy的mixin，与vue中的mixin执行顺序相反
 •wepy中，会先执行组件自身的，再执行mixin中的
 •vue中对于钩子函数，会先执行mixin中的，再执行组件自身的；vue中methods如果和mixin同名，那么只会执行自身的方法
 
-###关于canvas和base64
+##### 关于canvas和base64
 •小程序中可以进行canvas相关操作，但是跟纯html中的canvas有所不同（api差异），canvas的使用都应该参照：小程序中的canvas
 
-###arrayBuffer和base64互转
+##### arrayBuffer和base64互转
 •本段内容在文档中是搜索不到的，但是确实是支持的，使用如下2种方式：
 •wx.arrayBufferToBase64(arrayBuffer)
 •wx.base64ToArrayBuffer(base64)
 
-###命名规范
+##### 命名规范
 •小程序内部定义的实例API都以$开头，所以我们在定义实例属性、方法的时候不能以$开头，以便区分
 
 
